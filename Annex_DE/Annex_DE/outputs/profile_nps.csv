@@ -1,0 +1,18 @@
+source,column,dtype,rows,n_null,pct_null,n_unique,sample
+nps,Submission ID,str,4129,0,0.0,4129,BzK4Q11
+nps,Respondent ID,str,4129,0,0.0,3756,k4z1Y6
+nps,Submitted at,datetime64[us],4129,0,0.0,3087,2025-04-22 15:15:00
+nps,Loan Id,str,4129,0,0.0,3532,rec2FCxHhqXw6aKRU
+nps,"Using a scale from 0 (not likely) to 10 (very likely), how likely are you to recommend ABC Phones to friends or family?",float64,4129,144,3.49,11,6.0
+nps,What is the main reason for your score?,object,4129,2946,71.35,1060,"Mwekee ata kama ni customer care mmojaa wa usiku baana. Juzi nimemiss pesa mingi cause simu yangu ilizima, nikajaribu kulipa inakataa kufunguka. I paid more than 5 times."
+nps,What is one thing we could do to improve your experience with us?,object,4129,2995,72.54,1068,Weka customer care wa usiku
+nps,Are you happy with the quality and performance of your device?,str,4129,1502,36.38,2,Yes
+nps,Are you happy with the service and support provided by ABC Phones?,str,4129,1521,36.84,2,Yes
+nps,Have you ever experienced a delay in your payment reflecting in your ABC account?,str,4129,1760,42.63,2,Yes
+nps,Have you ever had difficulty getting assistance from ABC Phones customer support when needed?,str,4129,1777,43.04,3,Yes
+nps,(If Yes) – Please describe the challenge you faced and how we can improve your experience.,object,4129,2169,52.53,1339,Unlocking my phone
+nps,Have you experienced any battery-related issues with your MoPhones device?,str,4129,2048,49.6,2,No
+nps,Have you used the MoPhones app (MoApp) to manage your account or make payments?,str,4129,2069,50.11,3,"Yes, and I am satisfied with the MoApp"
+nps,Which communication channel do you prefer when contacting MoPhones for inquiries or support?,str,4129,2092,50.67,5,MoPhones App
+nps,Have you ever had your phone lock despite making a payment on time?,str,4129,2099,50.84,2,Yes
+nps,Any other Feedback?,object,4129,2376,57.54,1163,Would like to upgrade once I'm done with this loan

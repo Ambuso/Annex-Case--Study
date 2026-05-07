@@ -1,0 +1,31 @@
+source,column,dtype,rows,n_null,pct_null,n_unique,sample
+customer::Sales Details,SALE_ID,str,1048575,1027828,98.02,20747,recg9SxxjvTdgP6NC
+customer::Sales Details,SALE_DATE,datetime64[us],1048575,1027828,98.02,939,2025-06-26 00:00:00
+customer::Sales Details,RETURNED,float64,1048575,1027828,98.02,2,0.0
+customer::Sales Details,RETURN_DATE,datetime64[us],1048575,1046831,99.83,530,2025-06-09 00:00:00
+customer::Sales Details,SALE_TYPE,str,1048575,1027830,98.02,3,Financed
+customer::Sales Details,SELLER,str,1048575,1027905,98.03,519,angela Muthini
+customer::Sales Details,SELLER_TYPE,str,1048575,1032799,98.5,5,Sales Executive
+customer::Sales Details,RETURN_POLICY_COMPLIANCE,str,1048575,1046831,99.83,2,out of policy
+customer::Sales Details,CASH_PRICE,float64,1048575,1027830,98.02,259,34999.0
+customer::Sales Details,LOAN_PRICE,float64,1048575,1027830,98.02,930,62779.0
+customer::Sales Details,CLIENT_MODEL,str,1048575,1027853,98.02,3,1C
+customer::Sales Details,BUSINESS_MODEL,str,1048575,1027828,98.02,7,1P1C
+customer::Sales Details,LOAN_TERM,str,1048575,1027832,98.02,3,12M
+customer::Sales Details,PRODUCT_NAME,str,1048575,1027830,98.02,132,Samsung-Note-20-128GB
+customer::Sales Details,MODEL,str,1048575,1027830,98.02,82,Note-20
+customer::Sales Details,Loan Id,str,1048575,1027879,98.03,20691,recg9SxxjvTdgP6NC
+customer::Gender,Loan Id,str,1048575,1033679,98.58,10497,recrE70a8wdtWk5gx
+customer::Gender,Citizenship,str,1048575,998787,95.25,3,KENYAN
+customer::Gender,Gender,str,1048575,998792,95.25,5,Female
+customer::DOB,_id,str,1048575,991445,94.55,57130,67c57f7b5a877e67ca1e9636
+customer::DOB,provider,str,1048575,991445,94.55,3,TRANSUNION
+customer::DOB,date_of_birth,object,1048575,991654,94.57,17087,1992-01-15T00:00:00+03:00
+customer::DOB,Loan Id ,str,1048575,1035013,98.71,11217,recB62iDqCzZRSLvJ
+customer::DOB,createdAt UTC,str,1048575,991445,94.55,57130,2025-03-03T12:12:02.196Z
+customer::Income Level,Loan Id,str,1048575,1036690,98.87,10609,recwly5Hso1qlIdOs
+customer::Income Level,Duration,float64,1048575,1025736,97.82,23,12.0
+customer::Income Level,Received,float64,1048575,1025736,97.82,21191,203934.19
+customer::Income Level,Persons Received From Total,float64,1048575,1025736,97.82,20993,203278.0
+customer::Income Level,Banks Received,float64,1048575,1025736,97.82,16632,100.0
+customer::Income Level,Paybills Received Others,float64,1048575,1025736,97.82,12560,120.0

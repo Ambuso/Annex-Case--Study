@@ -1,0 +1,16 @@
+# Data
+data/raw/*
+!data/raw/.gitkeep
+data/warehouse/
+
+# Logs
+logs/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+
+# OS
+.DS_Store

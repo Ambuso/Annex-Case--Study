@@ -1,0 +1,19 @@
+ts,name,severity,cadence,passed,n_failed,detail
+2026-05-06T08:42:06,schema_and_freshness,critical,real_time,False,1,checked 5 snapshots
+2026-05-06T08:42:06,uniqueness_loan_snapshot,critical,daily,True,0,"0 duplicate (loan_id, snapshot_date) rows"
+2026-05-06T08:42:06,referential_integrity,warning,daily,False,53,credit→customer orphans: 53 | nps→customer orphans: 0 | nps→credit orphans: 0
+2026-05-06T08:42:06,range_checks,warning,daily,False,16,income_positive=16
+2026-05-06T08:42:06,null_thresholds,warning,daily,True,0,0 breaches across 5 snapshots
+2026-05-06T08:42:06,dpd_reconciliation,info,weekly,True,0,"[{'snapshot': 'snapshot_date=2025-01-01', 'rows': 8934, 'exact_match_pct': 57.84, 'within_7d_pct': 61.05}, {'snapshot': 'snapshot_date=2025-03-30', 'rows': 11023, 'exact_match_pct': 55.85, 'within_7d_pct': 57.9}, {'snapshot': 'snapshot_date=2025-06-30', 'rows': 13889, 'exact_match_pct': 56.56, 'within_7d_pct': 58.44}, {'snapshot': 'snapshot_date=2025-09-30', 'rows': 16862, 'exact_match_pct': 56.04, 'within_7d_pct': 58.2}, {'snapshot': 'snapshot_date=2025-12-30', 'rows': 20740, 'exact_match_pct':"
+2026-05-07T17:26:39,schema_and_freshness,critical,real_time,False,1,checked 5 snapshots
+2026-05-07T17:26:39,uniqueness_loan_snapshot,critical,daily,True,0,"0 duplicate (loan_id, snapshot_date) rows"
+2026-05-07T17:26:39,referential_integrity,warning,daily,False,53,credit→customer orphans: 53 | nps→customer orphans: 0 | nps→credit orphans: 0
+2026-05-07T17:26:39,range_checks,warning,daily,False,16,income_positive=16
+2026-05-07T17:26:39,null_thresholds,warning,daily,True,0,0 breaches across 5 snapshots
+2026-05-07T17:26:39,dpd_reconciliation,info,weekly,True,0,"[{'snapshot': 'snapshot_date=2025-01-01', 'rows': 8934, 'exact_match_pct': 57.84, 'within_7d_pct': 61.05}, {'snapshot': 'snapshot_date=2025-03-30', 'rows': 11023, 'exact_match_pct': 55.85, 'within_7d_pct': 57.9}, {'snapshot': 'snapshot_date=2025-06-30', 'rows': 13889, 'exact_match_pct': 56.56, 'within_7d_pct': 58.44}, {'snapshot': 'snapshot_date=2025-09-30', 'rows': 16862, 'exact_match_pct': 56.04, 'within_7d_pct': 58.2}, {'snapshot': 'snapshot_date=2025-12-30', 'rows': 20740, 'exact_match_pct':"
+2026-05-07T18:13:12,schema_and_freshness,critical,real_time,False,1,checked 5 snapshots
+2026-05-07T18:13:12,uniqueness_loan_snapshot,critical,daily,True,0,"0 duplicate (loan_id, snapshot_date) rows"
+2026-05-07T18:13:12,referential_integrity,warning,daily,False,53,credit→customer orphans: 53 | nps→customer orphans: 0 | nps→credit orphans: 0
+2026-05-07T18:13:12,range_checks,warning,daily,False,16,income_positive=16
+2026-05-07T18:13:12,null_thresholds,warning,daily,True,0,0 breaches across 5 snapshots
+2026-05-07T18:13:12,dpd_reconciliation,info,weekly,True,0,"[{'snapshot': 'snapshot_date=2025-01-01', 'rows': 8934, 'exact_match_pct': 57.84, 'within_7d_pct': 61.05}, {'snapshot': 'snapshot_date=2025-03-30', 'rows': 11023, 'exact_match_pct': 55.85, 'within_7d_pct': 57.9}, {'snapshot': 'snapshot_date=2025-06-30', 'rows': 13889, 'exact_match_pct': 56.56, 'within_7d_pct': 58.44}, {'snapshot': 'snapshot_date=2025-09-30', 'rows': 16862, 'exact_match_pct': 56.04, 'within_7d_pct': 58.2}, {'snapshot': 'snapshot_date=2025-12-30', 'rows': 20740, 'exact_match_pct':"
