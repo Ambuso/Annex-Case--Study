@@ -51,6 +51,12 @@ End-to-end runtime ≈ 2.5 minutes. All outputs land in `outputs/`,
 all intermediate Parquet tables in `data/warehouse/`, all logs in
 `logs/pipeline.log`.
 
+## Architecture
+
+![ETL Pipeline Architecture](pipeline_design/architecture.png)
+
+## Directory layout
+...
 ## Directory layout
 
 ```
