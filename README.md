@@ -8,6 +8,15 @@ GCS+BigQuery, or Snowflake tomorrow with no SQL rewrites.
 
 ---
 
+## Pipeline Architecture
+
+![Pipeline Architecture](pipeline_design/architecture.png)
+
+This diagram shows the full end-to-end flow:
+raw ingestion → staging → feature engineering → quality checks → analytics layer.
+
+---
+
 ## TL;DR
 
 ### Create and activate a virtual environment
@@ -18,31 +27,53 @@ GCS+BigQuery, or Snowflake tomorrow with no SQL rewrites.
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-Windows (Git Bash)
+```
+
+#### Windows (Git Bash)
+
+```bash
 python -m venv .venv
 source .venv/Scripts/activate
 pip install -r requirements.txt
-Linux / macOS
+```
+
+#### Linux / macOS
+
+```bash
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+```
 
-Deactivate the environment when finished:
+Deactivate:
 
+```bash
 deactivate
-Run the pipeline
+```
+
+---
+
+### Run the pipeline
+
+```bash
 pip install -r requirements.txt
 python run_pipeline.py
+```
 
-End-to-end runtime ≈ 2.5 minutes. All outputs land in outputs/,
-all intermediate Parquet tables in data/warehouse/, all logs in
-logs/pipeline.log.
+End-to-end runtime ≈ 2.5 minutes.
 
-Pipeline Architecture
+Outputs:
+- `outputs/` → reports & analytics
+- `data/warehouse/` → Parquet lakehouse tables
+- `logs/` → pipeline logs
 
-Directory layout
+---
+
+## Directory layout
+
+```
 .
-├── run_pipeline.py              # single-driver orchestrator
+├── run_pipeline.py
 ├── pipeline_design/
 │   ├── architecture.png
 │   └── architecture.svg
@@ -54,78 +85,58 @@ Directory layout
 │   ├── analysis.py
 │   └── generate_architecture_diagram.py
 ├── data/
-│   ├── raw/                     # source files (gitignored)
-│   └── warehouse/               # Parquet tables, Hive-partitioned
-│       ├── stg_credit_snapshot/snapshot_date=YYYY-MM-DD/data.parquet
-│       ├── stg_customer.parquet
-│       ├── stg_nps.parquet
-│       ├── dim_customer.parquet
-│       └── fct_credit_snapshot/snapshot_date=YYYY-MM-DD/data.parquet
+│   ├── raw/
+│   └── warehouse/
 ├── outputs/
-│   ├── data_quality_report.md
-│   ├── profile_*.csv
-│   ├── dq_results.csv
-│   ├── portfolio_metrics.csv
-│   ├── portfolio_by_segment.csv
-│   ├── nps_by_risk.csv
-│   ├── cleaned_summary.csv
-│   └── analysis_findings.md
 ├── slides/
-│   └── Annex_DE_Presentation.pdf
 └── logs/
-    └── pipeline.log
-Tech choices
-Concern	Choice	Why
-Storage	Parquet, Hive-partitioned by snapshot_date	Columnar, compressed, cloud-ready
-Compute	Pandas + DuckDB	Fast local analytics + SQL on Parquet
-Orchestration	Python script driver	Easy to migrate to Airflow/Prefect
-Quality	Custom Python DQ checks	Replaceable with Great Expectations/dbt
-Alerting	Logging hooks	Plug into Slack/PagerDuty in prod
-Key decisions & assumptions
-No customer_id exists → analysis is loan-level
-Column inconsistencies cleaned at ingest
-DOB conflicts resolved via bureau priority: TRANSUNION > SMILEID > SPINMOBILE
-Income fields carefully handled to avoid double counting
-days_past_due independently recalculated for validation
-Risk categories mapped from ACCOUNT_STATUS_L2
-Demo rows excluded
-Missing demographics retained as Unknown
-Quarterly snapshot structure enforced
-One dataset contains date mismatch → flagged in DQ checks
-Reproducing this submission
-Install dependencies
+```
+
+---
+
+## Tech choices
+
+| Layer | Tooling | Reason |
+|------|--------|--------|
+| Storage | Parquet (Hive-partitioned) | Fast, compressed, cloud-native |
+| Transform | Pandas + DuckDB | Simple local + scalable SQL |
+| Orchestration | Python driver script | Easy upgrade to Airflow/Prefect |
+| Quality | Custom DQ checks | Replaceable with Great Expectations |
+| Analytics | DuckDB SQL | Zero warehouse dependency |
+
+---
+
+## Key decisions & assumptions
+
+- No `customer_id` → loan-level joins only
+- Column cleanup handled via `.strip()`
+- DOB conflicts resolved via bureau priority:
+  `TRANSUNION > SMILEID > SPINMOBILE`
+- Income fields treated carefully to avoid double counting
+- `risk_category` derived using PAR-style buckets
+- Missing customer attributes retained as `"Unknown"` (important signal)
+- One dataset contains intentional date mismatch → flagged in DQ checks
+
+---
+
+## Reproducing
+
+```bash
+python -m venv .venv
+source .venv/bin/activate   # or Activate.ps1 on Windows
 pip install -r requirements.txt
-Required data files
-data/raw/
-Credit_Data_-_01-01-2025.csv
-Credit_Data_-_30-03-2025.csv
-Credit_Data_-_30-06-2025.csv
-Credit_Data_-_30-09-2025.csv
-Credit_Data_-_30-12-2025.csv
-Credit_Data_Definitions.xlsx
-Sales_and_Customer_Data.xlsx
-NPS_Data.xlsx
-Run pipeline
 python run_pipeline.py
+```
 
-All stages are modular and idempotent.
+---
 
-Production roadmap
-Airflow DAG orchestration (task-per-stage)
-S3 + Athena / BigQuery migration (no logic change)
-dbt transformation layer for lineage + testing
-Great Expectations / Soda for data quality framework
-Slack + PagerDuty alerting integration
-OpenLineage for observability tracking
-Summary
+## Production roadmap
 
-This project demonstrates a production-style data engineering pipeline
-built with lightweight tools, designed to scale from local execution to
-cloud warehouse systems without rewriting core logic.
+- Airflow orchestration per stage
+- S3 + Athena / BigQuery migration
+- dbt transformations for SQL layer
+- Great Expectations for data quality
+- OpenLineage for observability
+- Slack / PagerDuty alerting
 
-It emphasizes:
-
-Data quality discipline
-Reproducible pipelines
-Warehouse-ready architecture
-Analytical clarity over tooling complexity
+---
