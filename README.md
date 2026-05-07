@@ -1,4 +1,5 @@
-# ABC Phones Credit Portfolio — Annex DE Case Study
+Here's the cleaned-up README:
+markdown# ABC Phones Credit Portfolio — Annex DE Case Study
 
 A lightweight but production-shaped data pipeline for ABC Phones' credit
 portfolio: ingestion → cleaning → feature engineering → quality checks →
@@ -43,7 +44,6 @@ deactivate
 ### Run the pipeline
 
 ```bash
-pip install -r requirements.txt
 python run_pipeline.py
 ```
 
@@ -56,10 +56,6 @@ all intermediate Parquet tables in `data/warehouse/`, all logs in
 ![ETL Pipeline Architecture](pipeline_design/architecture.png)
 
 ## Directory layout
-...
-## Directory layout
-
-```
 .
 ├── run_pipeline.py              # single-driver orchestrator
 ├── pipeline_design/
@@ -92,8 +88,7 @@ all intermediate Parquet tables in `data/warehouse/`, all logs in
 ├── slides/
 │   └── Annex_DE_Presentation.pdf
 └── logs/
-    └── pipeline.log
-```
+└── pipeline.log
 
 ## Tech choices
 
@@ -116,16 +111,13 @@ These are the calls I made; each is also justified inline in the code.
 2. **`Loan Id` vs `Loan Id ` (trailing space).** Cleaned on ingest by
 
 ```python
-df.columns = [c.strip() for c in df.columns]
+   df.columns = [c.strip() for c in df.columns]
 ```
 
 3. **DOB conflicts (471 loans).** Resolved by provider priority
-
-```text
 TRANSUNION > SMILEID > SPINMOBILE
-```
 
-then most recent `createdAt UTC`. The credit bureau is treated as authoritative.
+   then most recent `createdAt UTC`. The credit bureau is treated as authoritative.
 
 4. **Income `Received` field used as canonical total.** The other income
    columns (`Persons Received From Total`, `Banks Received`,
@@ -135,25 +127,22 @@ then most recent `createdAt UTC`. The credit bureau is treated as authoritative.
 5. **`Duration` assumed to be months** (matches `LOAN_TERM='12M'` semantics).
 
 6. **`days_past_due` derived independently** from
-
-```text
 (reporting_date - next_invoice_date)
-```
 
-per the brief, *and* the source value retained for reconciliation. They
-match within 7 days for ~55% of rows; the gap is a known modelling
-difference (next-invoice vs earliest-unpaid-invoice). Surfaced as a
-weekly DQ check.
+   per the brief, *and* the source value retained for reconciliation. They
+   match within 7 days for ~55% of rows; the gap is a known modelling
+   difference (next-invoice vs earliest-unpaid-invoice). Surfaced as a
+   weekly DQ check.
 
 7. **`risk_category`**: standard PAR-bucket framework adapted to ABC Phones'
    `ACCOUNT_STATUS_L2`:
 
-- **Critical** = Write Off / Lost Write Off OR DPD ≥ 90
-- **High**     = DPD 31-89 OR L2 ∈ {PAR 30, FMD}
-- **Medium**   = DPD 1-30 OR L2 ∈ {PAR 7, FPD, Inactive}
-- **Low**      = DPD 0 AND L2 = Active
-- **Closed**   = L2 = Paid Off       (out of active book)
-- **Returned** = L2 = Return         (out of active book)
+   - **Critical** = Write Off / Lost Write Off OR DPD ≥ 90
+   - **High**     = DPD 31-89 OR L2 ∈ {PAR 30, FMD}
+   - **Medium**   = DPD 1-30 OR L2 ∈ {PAR 7, FPD, Inactive}
+   - **Low**      = DPD 0 AND L2 = Active
+   - **Closed**   = L2 = Paid Off       (out of active book)
+   - **Returned** = L2 = Return         (out of active book)
 
 8. **Demo rows excluded** (`ACCOUNT_STATUS_L1='Demo'`, 8 rows total). Test data.
 
@@ -170,28 +159,22 @@ weekly DQ check.
 ## Reproducing this submission
 
 Tested on Python 3.12. Dependencies:
-
-```text
 pandas>=2.0
 pyarrow>=15
 duckdb>=1.0
 openpyxl
 matplotlib
 cairosvg
-```
 
 Place the source files in `data/raw/`:
-
-```text
-Credit_Data_-_01-01-2025.csv
-Credit_Data_-_30-03-2025.csv
-Credit_Data_-_30-06-2025.csv
-Credit_Data_-_30-09-2025.csv
-Credit_Data_-_30-12-2025.csv
+Credit_Data_-01-01-2025.csv
+Credit_Data-30-03-2025.csv
+Credit_Data-30-06-2025.csv
+Credit_Data-30-09-2025.csv
+Credit_Data-_30-12-2025.csv
 Credit_Data_Definitions.xlsx
 Sales_and_Customer_Data.xlsx
 NPS_Data.xlsx
-```
 
 Then run:
 
